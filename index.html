@@ -26,7 +26,39 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body>
+  <body class="intro-active">
+    <!-- CINEMATIC INTRO OVERLAY -->
+    <div id="introOverlay" class="intro-overlay">
+      <!-- Particle canvas -->
+      <canvas id="introCanvas" class="intro-canvas"></canvas>
+
+      <!-- Background image slides -->
+      <div class="intro-bg-slide slide-1"></div>
+      <div class="intro-bg-slide slide-2"></div>
+      <div class="intro-bg-slide slide-3"></div>
+
+      <!-- Dark vignette -->
+      <div class="intro-vignette"></div>
+
+      <!-- Content -->
+      <div class="intro-content">
+        <div class="intro-logo-ring">
+          <svg viewBox="0 0 100 100" class="ring-svg">
+            <circle class="ring-track" cx="50" cy="50" r="44"/>
+            <circle class="ring-progress" cx="50" cy="50" r="44"/>
+          </svg>
+          <div class="intro-logo-icon"><i class="fas fa-heartbeat"></i></div>
+        </div>
+        <h1 class="intro-title">
+          <span class="word w1">Rotary</span>
+          <span class="word w2">Galaxy</span>
+          <span class="word w3">Scan</span>
+        </h1>
+        <p class="intro-tagline">Foundation · Healthcare · Hope</p>
+        <div class="intro-progress-bar"><div class="intro-progress-fill"></div></div>
+      </div>
+    </div>
+
     <!-- 1. NAVBAR -->
     <nav class="navbar" id="navbar">
       <div class="container nav-container">
@@ -50,32 +82,79 @@
 
     <!-- 2. HERO SECTION -->
     <section id="home" class="hero">
-      <div class="hero-overlay"></div>
-      <div class="container hero-container">
-        <div class="hero-content">
-          <h1>Precision in Care,<br />Service in Action.</h1>
-          <p class="tagline">
-            Bridging the gap between advanced medical diagnostics and the
-            underserved sections of society.
-          </p>
-          <div class="hero-buttons">
-            <a href="#services" class="btn btn-primary">Our Services</a>
-            <a href="#contact" class="btn btn-secondary">Contact Us</a>
-          </div>
+      <!-- Cinematic Background Slideshow -->
+      <div class="hero-slides">
+        <div class="hero-slide hs-1"></div>
+        <div class="hero-slide hs-2"></div>
+        <div class="hero-slide hs-3"></div>
+      </div>
+      <div class="hero-gradient-overlay"></div>
+
+      <!-- Floating Particle Dots -->
+      <div class="hero-particles">
+        <span class="hp hp1"></span><span class="hp hp2"></span>
+        <span class="hp hp3"></span><span class="hp hp4"></span>
+        <span class="hp hp5"></span><span class="hp hp6"></span>
+      </div>
+
+      <!-- Main Content -->
+      <div class="container hero-main">
+        <!-- Badge -->
+        <div class="hero-badge reveal-hero">
+          <i class="fas fa-certificate"></i>
+          <span>12A &amp; 80G Certified Trust</span>
         </div>
-        <!-- Animated Fan Cards Widget -->
-        <div class="hero-fan-wrapper">
-          <div class="fan-stage">
-            <div class="fan-card fc-1"><span>Integrity</span></div>
-            <div class="fan-card fc-2"><span>Transparency</span></div>
-            <div class="fan-card fc-3"><span>Commitment</span></div>
-            <div class="fan-card fc-4"><span>Compassion</span></div>
-            <div class="fan-card fc-5"><span>Reliability</span></div>
-            <div class="fan-card fc-6"><span>Accountability</span></div>
-            <div class="fan-card fc-7"><span>Empowerment</span></div>
+
+        <!-- Headline -->
+        <h1 class="hero-headline reveal-hero delay-1">
+          <span class="hl-line">Precision in Care.</span>
+          <span class="hl-line hl-accent">Service in Action.</span>
+        </h1>
+
+        <!-- Tagline -->
+        <p class="hero-sub reveal-hero delay-2">
+          Bridging the gap between advanced medical diagnostics and the underserved communities of Tamil Nadu.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="hero-cta reveal-hero delay-3">
+          <a href="#services" class="btn-hero-primary">
+            <i class="fas fa-stethoscope"></i> Explore Services
+          </a>
+          <a href="#contact" class="btn-hero-outline">
+            <i class="fas fa-hand-holding-heart"></i> Donate Now
+          </a>
+        </div>
+
+        <!-- Stats Bar -->
+        <div class="hero-stats reveal-hero delay-4">
+          <div class="hstat">
+            <span class="hstat-num" data-target="5000">0</span><span>+</span>
+            <span class="hstat-label">Patients Served</span>
+          </div>
+          <div class="hstat-divider"></div>
+          <div class="hstat">
+            <span class="hstat-num" data-target="12">0</span>
+            <span class="hstat-label">Districts Covered</span>
+          </div>
+          <div class="hstat-divider"></div>
+          <div class="hstat">
+            <span class="hstat-num" data-target="98">0</span><span>%</span>
+            <span class="hstat-label">Subsidy Rate</span>
+          </div>
+          <div class="hstat-divider"></div>
+          <div class="hstat">
+            <span class="hstat-num" data-target="3">0</span>
+            <span class="hstat-label">Certified Scans</span>
           </div>
         </div>
       </div>
+
+      <!-- Scroll indicator -->
+      <a href="#about" class="hero-scroll-down" aria-label="Scroll down">
+        <span class="scroll-line"></span>
+        <i class="fas fa-chevron-down"></i>
+      </a>
     </section>
 
     <!-- 3. ABOUT SECTION -->
@@ -773,6 +852,96 @@
       window.addEventListener('load', () => {
           startGalleryAutoPlay();
       });
+
+      /* ---- Animated Stat Counters ---- */
+      function animateCounters() {
+        document.querySelectorAll('.hstat-num').forEach(el => {
+          const target = +el.dataset.target;
+          const duration = 2000;
+          const step = target / (duration / 16);
+          let current = 0;
+          const timer = setInterval(() => {
+            current += step;
+            if (current >= target) { current = target; clearInterval(timer); }
+            el.textContent = Math.floor(current).toLocaleString();
+          }, 16);
+        });
+      }
+
+      // Run counters after intro fades (3.4s) or on first scroll
+      let countersRun = false;
+      function runOnce() {
+        if (!countersRun) { countersRun = true; animateCounters(); }
+      }
+      setTimeout(runOnce, 3500);
+      window.addEventListener('scroll', runOnce, { once: true });
+    </script>
+
+    <!-- CINEMATIC INTRO SCRIPT -->
+    <script>
+    (function () {
+      const overlay = document.getElementById('introOverlay');
+      const body    = document.body;
+      const canvas  = document.getElementById('introCanvas');
+      const ctx     = canvas.getContext('2d');
+
+      /* ---------- CANVAS PARTICLES ---------- */
+      let W, H, particles = [];
+      function resize() {
+        W = canvas.width  = window.innerWidth;
+        H = canvas.height = window.innerHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      function randomParticle() {
+        return {
+          x: Math.random() * W,
+          y: Math.random() * H,
+          r: Math.random() * 2.5 + 0.5,
+          dx: (Math.random() - 0.5) * 0.6,
+          dy: -Math.random() * 0.8 - 0.2,
+          alpha: Math.random() * 0.6 + 0.2
+        };
+      }
+
+      for (let i = 0; i < 120; i++) particles.push(randomParticle());
+
+      let animId;
+      function drawParticles() {
+        ctx.clearRect(0, 0, W, H);
+        particles.forEach(p => {
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(255,255,255,${p.alpha})`;
+          ctx.fill();
+          p.x += p.dx;
+          p.y += p.dy;
+          if (p.y < -5 || p.x < -5 || p.x > W + 5) {
+            Object.assign(p, randomParticle());
+            p.y = H + 5;
+          }
+        });
+        animId = requestAnimationFrame(drawParticles);
+      }
+      drawParticles();
+
+      /* ---------- DISMISS ---------- */
+      function dismissIntro() {
+        cancelAnimationFrame(animId);
+        overlay.classList.add('intro-fade-out');
+        setTimeout(() => {
+          overlay.style.display = 'none';
+          body.classList.remove('intro-active');
+        }, 700);
+      }
+
+      // Auto dismiss after 3.2 s (0.2 s buffer for animation)
+      setTimeout(dismissIntro, 3200);
+
+      // Skip on click / tap
+      overlay.addEventListener('click', dismissIntro);
+    })();
     </script>
   </body>
 </html>
