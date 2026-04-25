@@ -71,7 +71,7 @@
           <li><a href="#blog" class="nav-item">Blog</a></li>
           <li><a href="#contact" class="nav-item">Contact</a></li>
           <li>
-            <a href="#contact" class="btn btn-primary nav-btn">Donate Now</a>
+            <button onclick="openDonateModal()" class="btn btn-primary nav-btn" id="navDonateBtn">Donate Now</button>
           </li>
         </ul>
         <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
@@ -121,9 +121,9 @@
           <a href="#services" class="btn-hero-primary">
             <i class="fas fa-stethoscope"></i> Explore Services
           </a>
-          <a href="#contact" class="btn-hero-outline">
+          <button onclick="openDonateModal()" class="btn-hero-outline" id="heroDonateBtn">
             <i class="fas fa-hand-holding-heart"></i> Donate Now
-          </a>
+          </button>
         </div>
 
         <!-- Stats Bar -->
@@ -877,6 +877,70 @@
       window.addEventListener('scroll', runOnce, { once: true });
     </script>
 
+    <!-- ============ DONATE MODAL ============ -->
+    <div id="donateModal" class="dmodal-overlay" role="dialog" aria-modal="true" aria-labelledby="dmodalTitle">
+      <div class="dmodal-card">
+
+        <!-- Close button -->
+        <button class="dmodal-close" onclick="closeDonateModal()" aria-label="Close">&times;</button>
+
+        <!-- Header -->
+        <div class="dmodal-header">
+          <div class="dmodal-icon-ring">
+            <i class="fas fa-hand-holding-heart"></i>
+          </div>
+          <h2 id="dmodalTitle">Make a Donation</h2>
+          <p>Your contribution funds subsidised scans for those who cannot afford care.</p>
+        </div>
+
+        <!-- Amount Presets -->
+        <div class="dmodal-amounts">
+          <button class="damount-btn" data-val="500" onclick="selectAmount(this)">₹500</button>
+          <button class="damount-btn" data-val="1000" onclick="selectAmount(this)">₹1,000</button>
+          <button class="damount-btn active" data-val="2000" onclick="selectAmount(this)">₹2,000</button>
+          <button class="damount-btn" data-val="5000" onclick="selectAmount(this)">₹5,000</button>
+        </div>
+
+        <!-- Form -->
+        <form class="dmodal-form" id="donateForm" onsubmit="submitDonate(event)">
+          <div class="dform-row">
+            <div class="dform-group">
+              <label>Full Name</label>
+              <input type="text" id="dName" placeholder="Your name" required />
+            </div>
+            <div class="dform-group">
+              <label>Mobile Number</label>
+              <input type="tel" id="dPhone" placeholder="+91 00000 00000" required />
+            </div>
+          </div>
+          <div class="dform-group">
+            <label>Email Address</label>
+            <input type="email" id="dEmail" placeholder="you@example.com" required />
+          </div>
+          <div class="dform-group">
+            <label>Donation Amount (₹)</label>
+            <input type="number" id="dAmount" placeholder="Enter amount" value="2000" min="1" required />
+          </div>
+          <div class="dform-group">
+            <label>Message (optional)</label>
+            <textarea id="dMessage" rows="2" placeholder="Your message of support..."></textarea>
+          </div>
+          <button type="submit" class="dmodal-submit" id="dSubmitBtn">
+            <i class="fas fa-heart"></i> Donate Now
+          </button>
+        </form>
+
+        <!-- Success State (hidden by default) -->
+        <div class="dmodal-success" id="donateSuccess" style="display:none;">
+          <div class="dsuccess-icon"><i class="fas fa-check-circle"></i></div>
+          <h3>Thank You! 🙏</h3>
+          <p>Your generous donation has been received. We will contact you shortly with payment details.</p>
+          <button onclick="closeDonateModal()" class="dmodal-submit" style="margin-top:20px;">Close</button>
+        </div>
+
+      </div>
+    </div>
+
     <!-- CINEMATIC INTRO SCRIPT -->
     <script>
     (function () {
@@ -942,6 +1006,62 @@
       // Skip on click / tap
       overlay.addEventListener('click', dismissIntro);
     })();
+    </script>
+
+    <!-- DONATE MODAL SCRIPT -->
+    <script>
+    const donateModal = document.getElementById('donateModal');
+
+    function openDonateModal() {
+      donateModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      // Reset form view
+      document.getElementById('donateForm').style.display = 'flex';
+      document.getElementById('donateSuccess').style.display = 'none';
+    }
+
+    function closeDonateModal() {
+      donateModal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Close on overlay click (outside the card)
+    donateModal.addEventListener('click', function(e) {
+      if (e.target === donateModal) closeDonateModal();
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeDonateModal();
+    });
+
+    // Preset amount selection
+    function selectAmount(btn) {
+      document.querySelectorAll('.damount-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('dAmount').value = btn.dataset.val;
+    }
+
+    // Form submit
+    function submitDonate(e) {
+      e.preventDefault();
+      const btn = document.getElementById('dSubmitBtn');
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+
+      // Simulate a 1.5s processing delay then show success
+      setTimeout(() => {
+        document.getElementById('donateForm').style.display = 'none';
+        document.getElementById('donateSuccess').style.display = 'block';
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-heart"></i> Donate Now';
+        // Reset form fields
+        document.getElementById('donateForm').reset();
+        document.getElementById('dAmount').value = '2000';
+        document.querySelectorAll('.damount-btn').forEach(b => b.classList.remove('active'));
+        document.querySelector('.damount-btn[data-val="2000"]').classList.add('active');
+      }, 1500);
+    }
     </script>
   </body>
 </html>
