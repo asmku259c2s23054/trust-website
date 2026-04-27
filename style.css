@@ -911,6 +911,13 @@ img {
     margin-bottom: 5px;
 }
 
+.team-info h4 span.degree {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    font-weight: 500;
+    margin-right: 5px;
+}
+
 .team-info p {
     color: var(--text-light);
     font-size: 0.95rem;
@@ -1069,7 +1076,7 @@ img {
 /* --- 8. BLOG SECTION --- */
 .blog-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
 }
 
@@ -1627,6 +1634,29 @@ img {
     .team-carousel-wrapper {
         transform: scale(0.8);
     }
+    
+    .photo-stack {
+        width: 300px;
+        height: 250px;
+        margin-bottom: 30px;
+    }
+    .photo-card {
+        width: 200px;
+        height: 200px;
+        border-width: 5px;
+    }
+    .photo-left {
+        transform: translateX(-50px) rotate(-15deg) scale(0.9);
+    }
+    .photo-right {
+        transform: translateX(50px) rotate(15deg) scale(0.9);
+    }
+    .photo-stack:hover .photo-left {
+        transform: translateX(-80px) rotate(-20deg) scale(0.95);
+    }
+    .photo-stack:hover .photo-right {
+        transform: translateX(80px) rotate(20deg) scale(0.95);
+    }
 }
 
 @media (max-width: 576px) {
@@ -1672,6 +1702,29 @@ img {
     
     .team-carousel-wrapper {
         transform: scale(0.6);
+    }
+    
+    .photo-stack {
+        width: 250px;
+        height: 200px;
+        margin-bottom: 20px;
+    }
+    .photo-card {
+        width: 160px;
+        height: 160px;
+        border-width: 4px;
+    }
+    .photo-left {
+        transform: translateX(-40px) rotate(-15deg) scale(0.9);
+    }
+    .photo-right {
+        transform: translateX(40px) rotate(15deg) scale(0.9);
+    }
+    .photo-stack:hover .photo-left {
+        transform: translateX(-60px) rotate(-20deg) scale(0.95);
+    }
+    .photo-stack:hover .photo-right {
+        transform: translateX(60px) rotate(20deg) scale(0.95);
     }
 }
 

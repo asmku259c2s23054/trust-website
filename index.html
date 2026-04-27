@@ -102,22 +102,22 @@
           </div>
           <div class="swiper-slide">
             <div class="swiper-zoom-container">
-              <img src="images/abt1.png" alt="Carousel Image 1" />
+              <img src="images/34.jpg.jpeg" alt="Carousel Image 1" />
             </div>
           </div>
           <div class="swiper-slide">
             <div class="swiper-zoom-container">
-              <img src="images/abt2.png" alt="Carousel Image 2" />
+              <img src="images/31.jpg.jpeg" alt="Carousel Image 2" />
             </div>
           </div>
           <div class="swiper-slide">
             <div class="swiper-zoom-container">
-              <img src="images/img9.png" alt="Carousel Image 3" />
+              <img src="images/32.jpg.jpeg" alt="Carousel Image 3" />
             </div>
           </div>
           <div class="swiper-slide">
             <div class="swiper-zoom-container">
-              <img src="images/img8.png" alt="Carousel Image 4" />
+              <img src="images/29.jpg.jpeg" alt="Carousel Image 4" />
             </div>
           </div>
         </div>
@@ -170,15 +170,15 @@
             </p>
           </div>
           <div class="photo-template-container reveal reveal-right">
-            <div class="photo-stack">
+            <div class="photo-stack" id="aboutPhotoStack">
               <div class="photo-card photo-left">
-                <img src="images/abt1.png" alt="Gallery image 1">
+                <img src="images/34.jpg.jpeg" alt="Gallery image 1">
               </div>
               <div class="photo-card photo-center">
-                <img src="images/abt2.png" alt="Gallery image 2">
+                <img src="images/event-1.jpg" alt="Gallery image 2">
               </div>
               <div class="photo-card photo-right">
-                <img src="images/abt3.png" alt="Gallery image 3">
+                <img src="images/29.jpg.jpeg" alt="Gallery image 3">
               </div>
             </div>
             <div class="photo-template-text">
@@ -299,7 +299,7 @@
             <div class="team-member">
               <img src="images/nazeer.png" alt="Rtn.Adv.A.Nazeer Hussain" />
               <div class="team-info">
-                <h4>Rtn.Adv.A.Nazeer Hussain</h4>
+                <h4><span class="degree">Rtn.Adv.</span> A. Nazeer Hussain</h4>
                 <p>Managing Trustee<br />Director - HR</p>
               </div>
             </div>
@@ -307,7 +307,7 @@
             <div class="team-member">
               <img src="images/ponrraj.png" alt="Rtn.Adv.V.Ponrraj" />
               <div class="team-info">
-                <h4>Rtn.Adv.V.Ponrraj</h4>
+                <h4><span class="degree">Rtn.Adv.</span> V. Ponrraj</h4>
                 <p>Secretary<br />Project Chairman</p>
               </div>
             </div>
@@ -315,7 +315,7 @@
             <div class="team-member">
               <img src="images/anusha.png" alt="Rtn. Anusha Nagaraj" />
               <div class="team-info">
-                <h4>Rtn. Anusha Nagaraj</h4>
+                <h4><span class="degree">Rtn.</span>Anusha Nagaraj</h4>
                 <p>Treasurer</p>
               </div>
             </div>
@@ -323,7 +323,7 @@
             <div class="team-member">
               <img src="images/thangaraj.png" alt="Rtn.Er. V. Thangaraj" />
               <div class="team-info">
-                <h4>Rtn.Er. V. Thangaraj</h4>
+                <h4><span class="degree">Rtn.Er.</span> V. Thangaraj</h4>
                 <p>Trustee</p>
               </div>
             </div>
@@ -331,7 +331,7 @@
             <div class="team-member">
               <img src="images/rajasekaran.png" alt="Rtn. A. Rajasekaran" />
               <div class="team-info">
-                <h4>Rtn. A. Rajasekaran</h4>
+                <h4><span class="degree">Rtn.</span>A. Rajasekaran</h4>
                 <p>Trustee</p>
               </div>
             </div>
@@ -339,7 +339,7 @@
             <div class="team-member">
               <img src="images/saidhani.png" alt="Rtn. I. Saidhani" />
               <div class="team-info">
-                <h4>Rtn. I. Saidhani</h4>
+                <h4><span class="degree">Rtn.</span>I. Saidhani</h4>
                 <p>Trustee</p>
               </div>
             </div>
@@ -347,7 +347,7 @@
             <div class="team-member">
               <img src="images/aravind.png" alt="Rtn. Er.T. Aravind Balaji" />
               <div class="team-info">
-                <h4>Rtn. Er.T. Aravind Balaji</h4>
+                <h4><span class="degree">Rtn.Er.</span> T. Aravind Balaji</h4>
                 <p>Trustee</p>
               </div>
             </div>
@@ -355,7 +355,7 @@
             <div class="team-member">
               <img src="images/hari.jpg" alt="Rtn. Hari Narayanan" />
               <div class="team-info">
-                <h4>Rtn. Hari Narayanan</h4>
+                <h4><span class="degree">Rtn.</span>Hari Narayanan</h4>
                 <p>Chairman &ndash; Honorary<br />Advisor - CSR</p>
               </div>
             </div>
@@ -363,7 +363,7 @@
             <div class="team-member">
               <img src="images/mayilswami.jpg" alt="Rtn. P. Mayilswami" />
               <div class="team-info">
-                <h4>Rtn. P. Mayilswami</h4>
+                <h4><span class="degree">Rtn.</span>P. Mayilswami</h4>
                 <p>Trustee</p>
               </div>
             </div>
@@ -1052,6 +1052,27 @@
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev",
         },
+      });
+
+      // Auto-rotate About Us photo stack
+      document.addEventListener("DOMContentLoaded", function () {
+        const stackCards = document.querySelectorAll("#aboutPhotoStack .photo-card");
+        if (stackCards.length === 3) {
+          setInterval(() => {
+            stackCards.forEach((card) => {
+              if (card.classList.contains("photo-left")) {
+                card.classList.remove("photo-left");
+                card.classList.add("photo-right");
+              } else if (card.classList.contains("photo-center")) {
+                card.classList.remove("photo-center");
+                card.classList.add("photo-left");
+              } else if (card.classList.contains("photo-right")) {
+                card.classList.remove("photo-right");
+                card.classList.add("photo-center");
+              }
+            });
+          }, 2500); // 2.5 seconds
+        }
       });
     </script>
   </body>
