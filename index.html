@@ -23,131 +23,109 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
 
+    <!-- Swiper CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body class="intro-active">
-    <!-- CINEMATIC INTRO OVERLAY -->
-    <div id="introOverlay" class="intro-overlay">
-      <!-- Particle canvas -->
-      <canvas id="introCanvas" class="intro-canvas"></canvas>
-
-      <!-- Background image slides -->
-      <div class="intro-bg-slide slide-1"></div>
-      <div class="intro-bg-slide slide-2"></div>
-      <div class="intro-bg-slide slide-3"></div>
-
-      <!-- Dark vignette -->
-      <div class="intro-vignette"></div>
-
-      <!-- Content -->
-      <div class="intro-content">
-        <div class="intro-logo-ring">
-          <svg viewBox="0 0 100 100" class="ring-svg">
-            <circle class="ring-track" cx="50" cy="50" r="44"/>
-            <circle class="ring-progress" cx="50" cy="50" r="44"/>
-          </svg>
-          <div class="intro-logo-icon"><i class="fas fa-heartbeat"></i></div>
-        </div>
-        <h1 class="intro-title">
-          <span class="word w1">Rotary</span>
-          <span class="word w2">Galaxy</span>
-          <span class="word w3">Scan</span>
-        </h1>
-        <p class="intro-tagline">Foundation · Healthcare · Hope</p>
-        <div class="intro-progress-bar"><div class="intro-progress-fill"></div></div>
-      </div>
-    </div>
-
+  <body>
     <!-- 1. NAVBAR -->
     <nav class="navbar" id="navbar">
       <div class="container nav-container">
-        <a href="#" class="logo">Rotary Galaxy <span>Foundation</span></a>
-        <ul class="nav-links" id="nav-links">
-          <li><a href="#home" class="nav-item">Home</a></li>
-          <li><a href="#about" class="nav-item">About</a></li>
-          <li><a href="#services" class="nav-item">Services</a></li>
-          <li><a href="#gallery" class="nav-item">Projects</a></li>
-          <li><a href="#blog" class="nav-item">Blog</a></li>
-          <li><a href="#contact" class="nav-item">Contact</a></li>
-          <li>
-            <button onclick="openDonateModal()" class="btn btn-primary nav-btn" id="navDonateBtn">Donate Now</button>
-          </li>
-        </ul>
+        <!-- Logo -->
+        <a href="#" class="nav-brand">
+          <img
+            src="images/image copy.png"
+            alt="Rotary Udumalpet Galaxy"
+            class="brand-img"
+          />
+        </a>
+
+        <div class="nav-menu">
+          <!-- Links -->
+          <ul class="nav-links" id="nav-links">
+            <li><a href="#home" class="nav-item">Home</a></li>
+            <li><a href="#about" class="nav-item">About Us</a></li>
+          
+            <li><a href="#gallery" class="nav-item">Events</a></li>
+            <li><a href="#blog" class="nav-item">Blogs</a></li>
+            <li><a href="#contact" class="nav-item">Contact Us</a></li>
+          </ul>
+
+          <!-- Right Side: Contact Details -->
+          <div class="nav-right-contact">
+            <div class="contact-divider"></div>
+            <div class="contact-icon">
+              <i class="fas fa-phone-alt"></i>
+            </div>
+            <div class="contact-details">
+              <span class="contact-label">Call Us Any Time:</span>
+              <span class="contact-number">+91 948 958 9992</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile Toggle -->
         <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
           <i class="fas fa-bars"></i>
         </button>
       </div>
     </nav>
-
     <!-- 2. HERO SECTION -->
     <section id="home" class="hero">
-      <!-- Cinematic Background Slideshow -->
-      <div class="hero-slides">
-        <div class="hero-slide hs-1"></div>
-        <div class="hero-slide hs-2"></div>
-        <div class="hero-slide hs-3"></div>
-      </div>
-      <div class="hero-gradient-overlay"></div>
-
-      <!-- Floating Particle Dots -->
-      <div class="hero-particles">
-        <span class="hp hp1"></span><span class="hp hp2"></span>
-        <span class="hp hp3"></span><span class="hp hp4"></span>
-        <span class="hp hp5"></span><span class="hp hp6"></span>
-      </div>
-
-      <!-- Main Content -->
-      <div class="container hero-main">
-        <!-- Badge -->
-        <div class="hero-badge reveal-hero">
-          <i class="fas fa-certificate"></i>
-          <span>12A &amp; 80G Certified Trust</span>
-        </div>
-
-        <!-- Headline -->
-        <h1 class="hero-headline reveal-hero delay-1">
-          <span class="hl-line">Precision in Care.</span>
-          <span class="hl-line hl-accent">Service in Action.</span>
-        </h1>
-
-        <!-- Tagline -->
-        <p class="hero-sub reveal-hero delay-2">
-          Bridging the gap between advanced medical diagnostics and the underserved communities of Tamil Nadu.
-        </p>
-
-        <!-- CTA Buttons -->
-        <div class="hero-cta reveal-hero delay-3">
-          <a href="#services" class="btn-hero-primary">
-            <i class="fas fa-stethoscope"></i> Explore Services
-          </a>
-          <button onclick="openDonateModal()" class="btn-hero-outline" id="heroDonateBtn">
-            <i class="fas fa-hand-holding-heart"></i> Donate Now
-          </button>
-        </div>
-
-        <!-- Stats Bar -->
-        <div class="hero-stats reveal-hero delay-4">
-          <div class="hstat">
-            <span class="hstat-num" data-target="5000">0</span><span>+</span>
-            <span class="hstat-label">Patients Served</span>
+      <!-- Swiper -->
+      <div class="swiper heroSwiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <div class="swiper-zoom-container">
+              <img src="images/event-1.jpg" alt="Event 1" />
+            </div>
           </div>
-          <div class="hstat-divider"></div>
-          <div class="hstat">
-            <span class="hstat-num" data-target="12">0</span>
-            <span class="hstat-label">Districts Covered</span>
+          <div class="swiper-slide">
+            <div class="swiper-zoom-container">
+              <img src="images/event-2.jpg" alt="Event 2" />
+            </div>
           </div>
-          <div class="hstat-divider"></div>
-          <div class="hstat">
-            <span class="hstat-num" data-target="98">0</span><span>%</span>
-            <span class="hstat-label">Subsidy Rate</span>
+          <div class="swiper-slide">
+            <div class="swiper-zoom-container">
+              <img src="rotary.jpeg" alt="Event 3" />
+            </div>
           </div>
-          <div class="hstat-divider"></div>
-          <div class="hstat">
-            <span class="hstat-num" data-target="3">0</span>
-            <span class="hstat-label">Certified Scans</span>
+          <div class="swiper-slide">
+            <div class="swiper-zoom-container">
+              <img src="images/event-4.jpg" alt="Event 4" />
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="swiper-zoom-container">
+              <img src="images/abt1.png" alt="Carousel Image 1" />
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="swiper-zoom-container">
+              <img src="images/abt2.png" alt="Carousel Image 2" />
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="swiper-zoom-container">
+              <img src="images/img9.png" alt="Carousel Image 3" />
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="swiper-zoom-container">
+              <img src="images/img8.png" alt="Carousel Image 4" />
+            </div>
           </div>
         </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+        <!-- Add Navigation -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
       </div>
 
       <!-- Scroll indicator -->
@@ -191,40 +169,21 @@
               through early detection and professional care.
             </p>
           </div>
-          <div class="about-features reveal reveal-right">
-            <div class="feature-card delay-1">
-              <i class="fas fa-eye feature-icon"></i>
-              <div class="feature-info">
-                <h4>Vision</h4>
-                <p>
-                  To be the most trusted diagnostic foundation in the region,
-                  ensuring that no individual is deprived of high-quality
-                  medical imaging and healthcare due to financial or social
-                  barriers.
-                </p>
+          <div class="photo-template-container reveal reveal-right">
+            <div class="photo-stack">
+              <div class="photo-card photo-left">
+                <img src="images/abt1.png" alt="Gallery image 1">
+              </div>
+              <div class="photo-card photo-center">
+                <img src="images/abt2.png" alt="Gallery image 2">
+              </div>
+              <div class="photo-card photo-right">
+                <img src="images/abt3.png" alt="Gallery image 3">
               </div>
             </div>
-            <div class="feature-card delay-2">
-              <i class="fas fa-bullseye feature-icon"></i>
-              <div class="feature-info">
-                <h4>Mission</h4>
-                <p>
-                  To provide advanced scanning and diagnostic services to the
-                  rural and urban poor at subsidized or no cost, while
-                  maintaining the highest clinical standards.
-                </p>
-              </div>
-            </div>
-            <div class="feature-card delay-3">
-              <i class="fas fa-hand-holding-heart feature-icon"></i>
-              <div class="feature-info">
-                <h4>Partnership & Awareness</h4>
-                <p>
-                  We collaborate under CSR and 80G frameworks, and conduct
-                  health camps emphasizing the importance of early diagnosis in
-                  preventive medicine.
-                </p>
-              </div>
+            <div class="photo-template-text">
+              <p>We operate at the intersection of technology, finance, and wellness.</p>
+              <a href="#services" class="btn-template">Find your perfect choice <i class="fas fa-arrow-right"></i></a>
             </div>
           </div>
         </div>
@@ -236,7 +195,7 @@
       <div class="services-mosaic-section">
         <!-- Center Text -->
         <div class="services-center-text reveal reveal-zoom">
-          <h2>Our <span>Services</span><br />&amp; Passion.</h2>
+          <h2><span>Rotary</span><br />Galaxy Scan Foundation</h2>
           <a href="#contact" class="read-more"
             >Get In Touch &nbsp;<i class="fas fa-arrow-right"></i
           ></a>
@@ -245,60 +204,62 @@
         <!-- Image Tiles -->
         <div
           class="svc-tile svc-tile-1 reveal reveal-left delay-1"
-          style="background-image: url(&quot;images/service-scan.png&quot;)"
+          style="background-image: url(&quot;images/service-new-1.jpg&quot;)"
         >
           <div class="svc-overlay">
-            <h4>Advanced MRI &amp; CT Scanning</h4>
+            <h4>Compassionate Care</h4>
             <p>
-              High-resolution imaging at subsidized costs for underprivileged
-              patients.
+              Delivering high-quality health support with empathy to every
+              patient.
             </p>
           </div>
         </div>
 
         <div
           class="svc-tile svc-tile-2 reveal reveal-right delay-2"
-          style="background-image: url(&quot;images/service-analysis.png&quot;)"
+          style="background-image: url(&quot;images/service-new-2.jpg&quot;)"
         >
           <div class="svc-overlay">
-            <h4>Expert Diagnostic Analysis</h4>
+            <h4>Community Outreach</h4>
             <p>
-              Professional review and reporting of medical scans by expert
-              doctors.
+              Reaching out to rural areas to ensure everyone gets medical
+              attention.
             </p>
           </div>
         </div>
 
         <div
           class="svc-tile svc-tile-3 reveal reveal-left delay-3"
-          style="background-image: url(&quot;images/service-lab.png&quot;)"
+          style="background-image: url(&quot;images/service-new-3.jpg&quot;)"
         >
           <div class="svc-overlay">
-            <h4>Clinical Pathology Lab</h4>
+            <h4>Advanced Diagnostics</h4>
             <p>
-              Accurate blood tests and pathology for early disease detection.
+              Equipped with modern tools to detect issues early and accurately.
             </p>
           </div>
         </div>
 
         <div
-          class="svc-tile svc-tile-4 reveal reveal-right delay-4"
-          style="background-image: url(&quot;images/service-camp.png&quot;)"
+          class="svc-tile svc-tile-5 reveal reveal-right delay-5"
+          style="background-image: url(&quot;images/service-new-4.jpg&quot;)"
         >
           <div class="svc-overlay">
-            <h4>Rural Health Camps</h4>
-            <p>Free consultation camps in remote Tamil Nadu villages.</p>
+            <h4>Health Camps</h4>
+            <p>
+              Organizing free consultation camps in remote Tamil Nadu villages.
+            </p>
           </div>
         </div>
 
         <div
-          class="svc-tile svc-tile-5 reveal reveal-left delay-5"
-          style="background-image: url(&quot;images/service-mobile.png&quot;)"
+          class="svc-tile svc-tile-4 reveal reveal-left delay-4"
+          style="background-image: url(&quot;rotary.jpeg&quot;)"
         >
           <div class="svc-overlay">
-            <h4>Mobile Diagnostic Units</h4>
+            <h4>Expert Consultations</h4>
             <p>
-              Bringing diagnostic tools directly to underserved communities.
+              Guidance from experienced doctors dedicated to your well-being.
             </p>
           </div>
         </div>
@@ -306,7 +267,7 @@
         <div
           class="svc-tile svc-tile-6 reveal reveal-right delay-6"
           style="
-            background-image: url(&quot;images/service-ultrasound.png&quot;);
+            background-image: url(&quot;images/img6.png&quot;);
           "
         >
           <div class="svc-overlay">
@@ -323,7 +284,6 @@
     <section class="team section-padding">
       <div class="container">
         <div class="section-header reveal">
-          `n
           <h2>Office Bearers & Trustees</h2>
           <div class="divider"></div>
         </div>
@@ -413,84 +373,66 @@
     </section>
 
     <!-- 6. PROJECTS SHOWCASE (Interactive Gallery) -->
-    <section id="gallery" class="interactive-gallery-section section-padding" style="background-color: #0f172a">
-      <div class="container" style="max-width: 1200px;">
+    <section
+      id="gallery"
+      class="interactive-gallery-section section-padding"
+      style="background-color: #0f172a"
+    >
+      <div class="container" style="max-width: 1200px">
         <div class="interactive-gallery-container reveal">
-          <img src="images/event-1.jpg" id="gallery-main-img" class="gallery-main-img" alt="Main Event" />
-          
+          <img
+            src="images/event-1.jpg"
+            id="gallery-main-img"
+            class="gallery-main-img"
+            alt="Main Event"
+          />
+
           <!-- Gradient Overlay -->
           <div class="gallery-overlay">
-            
             <!-- Text Content -->
             <div class="gallery-text">
-              <span class="gallery-subtitle">Rotary Club of Udumalpet Galaxy</span>
+              <span class="gallery-subtitle"
+                >Rotary Club of Udumalpet Galaxy</span
+              >
               <h2 class="gallery-title">DISTRICT GOVERNOR'S OFFICIAL VISIT</h2>
             </div>
-            
+
             <!-- Thumbnail Bar -->
             <div class="gallery-thumbnails-wrapper">
-              <button class="thumb-nav prev" onclick="scrollThumbnails(-1)"><i class="fas fa-chevron-left"></i></button>
+              <button class="thumb-nav prev" onclick="scrollThumbnails(-1)">
+                <i class="fas fa-chevron-left"></i>
+              </button>
               <div class="gallery-thumbnails" id="gallery-thumbnails">
-                <img src="images/event-1.jpg" class="thumb active" onclick="changeGallery(this, 'images/event-1.jpg')" />
-                <img src="images/event-2.jpg" class="thumb" onclick="changeGallery(this, 'images/event-2.jpg')" />
-                <img src="images/event-3.jpg" class="thumb" onclick="changeGallery(this, 'images/event-3.jpg')" />
-                <img src="images/event-4.jpg" class="thumb" onclick="changeGallery(this, 'images/event-4.jpg')" />
-                <img src="images/event-5.jpg" class="thumb" onclick="changeGallery(this, 'images/event-5.jpg')" />
+                <img
+                  src="images/event-1.jpg"
+                  class="thumb active"
+                  onclick="changeGallery(this, 'images/event-1.jpg')"
+                />
+                <img
+                  src="images/event-2.jpg"
+                  class="thumb"
+                  onclick="changeGallery(this, 'images/event-2.jpg')"
+                />
+                <img
+                  src="images/event-3.jpg"
+                  class="thumb"
+                  onclick="changeGallery(this, 'images/event-3.jpg')"
+                />
+                <img
+                  src="images/event-4.jpg"
+                  class="thumb"
+                  onclick="changeGallery(this, 'images/event-4.jpg')"
+                />
+                <img
+                  src="images/event-5.jpg"
+                  class="thumb"
+                  onclick="changeGallery(this, 'images/event-5.jpg')"
+                />
               </div>
-              <button class="thumb-nav next" onclick="scrollThumbnails(1)"><i class="fas fa-chevron-right"></i></button>
+              <button class="thumb-nav next" onclick="scrollThumbnails(1)">
+                <i class="fas fa-chevron-right"></i>
+              </button>
             </div>
-            
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 7. TESTIMONIALS -->
-    <section class="testimonials section-padding">
-      <div class="container">
-        <div class="section-header">
-          <h2>Client Testimonials</h2>
-          <div class="divider"></div>
-        </div>
-        <div class="testimonial-grid">
-          <!-- Testimonial 1 -->
-          <div class="testimonial-card">
-            <div class="stars">
-              <i class="fas fa-star"></i><i class="fas fa-star"></i
-              ><i class="fas fa-star"></i><i class="fas fa-star"></i
-              ><i class="fas fa-star"></i>
-            </div>
-            <p class="review">
-              "The subsidised MRI scan facility provided by Rotary Galaxy has been a lifesaver for our family. The staff is extremely professional and caring."
-            </p>
-            <h4>Mrs. Lakshmi</h4>
-            <span class="client-role">Beneficiary</span>
-          </div>
-          <!-- Testimonial 2 -->
-          <div class="testimonial-card">
-            <div class="stars">
-              <i class="fas fa-star"></i><i class="fas fa-star"></i
-              ><i class="fas fa-star"></i><i class="fas fa-star"></i
-              ><i class="fas fa-star"></i>
-            </div>
-            <p class="review">
-              "We attended the rural health camp organized by the foundation. The free checkups and immediate diagnostic results were incredibly helpful."
-            </p>
-            <h4>Mr. Palanisamy</h4>
-            <span class="client-role">Village Resident</span>
-          </div>
-          <!-- Testimonial 3 -->
-          <div class="testimonial-card">
-            <div class="stars">
-              <i class="fas fa-star"></i><i class="fas fa-star"></i
-              ><i class="fas fa-star"></i><i class="fas fa-star"></i
-              ><i class="fas fa-star-half-alt"></i>
-            </div>
-            <p class="review">
-              "As a donor, I am highly impressed by the transparency and accountability of the Trust. Seeing our contributions directly save lives is fulfilling."
-            </p>
-            <h4>Dr. Senthil Kumar</h4>
-            <span class="client-role">Regular Contributor</span>
           </div>
         </div>
       </div>
@@ -506,43 +448,41 @@
         <div class="blog-grid">
           <!-- Blog 1 -->
           <div class="blog-card">
-            <img
-              src="./images/trust-deed.jpg"
-              alt="Trust Deed Registration"
-              onerror="this.src='https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&w=600&q=80'"
-            />
+            <img src="images/image copy 3.png" alt="Trust Deed Registration" />
             <div class="blog-info">
               <h3>Official Trust Deed Registration</h3>
               <p>
-                Rotary Galaxy Scan Foundation is officially registered under a Trust Deed, emphasizing our commitment to integrity and community service. Established by Mr. A. Nazeer Hussain, the foundation strives to provide accessible healthcare solutions to the people.
+                Rotary Galaxy Scan Foundation is officially registered under a
+                Trust Deed, emphasizing our commitment to integrity and
+                community service. Established by Mr. A. Nazeer Hussain, the
+                foundation strives to provide accessible healthcare solutions to
+                the people.
               </p>
             </div>
           </div>
           <!-- Blog 2 -->
           <div class="blog-card">
-            <img
-              src="./images/csr-approval.jpg"
-              alt="CSR Activities Approval"
-              onerror="this.src='https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=600&q=80'"
-            />
+            <img src="images/csr-approval.png" alt="CSR Activities Approval" />
             <div class="blog-info">
               <h3>Approved for CSR Activities</h3>
               <p>
-                We are proud to announce that our foundation has been officially registered and approved by the Ministry of Corporate Affairs for undertaking Corporate Social Responsibility (CSR) activities. We invite corporate partners to join us in our mission.
+                We are proud to announce that our foundation has been officially
+                registered and approved by the Ministry of Corporate Affairs for
+                undertaking Corporate Social Responsibility (CSR) activities. We
+                invite corporate partners to join us in our mission.
               </p>
             </div>
           </div>
           <!-- Blog 3 -->
           <div class="blog-card">
-            <img
-              src="./images/12a-registration.jpg"
-              alt="Section 12A Registration"
-              onerror="this.src='https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=600&q=80'"
-            />
+            <img src="images/image copy 2.png" alt="Section 12A Registration" />
             <div class="blog-info">
               <h3>Section 12A Provisional Registration</h3>
               <p>
-                Rotary Galaxy Scan Foundation has successfully received its provisional registration under Section 12A of the Income Tax Act. This certification reinforces our charitable nature and transparency in all our healthcare initiatives.
+                Rotary Galaxy Scan Foundation has successfully received its
+                provisional registration under Section 12A of the Income Tax
+                Act. This certification reinforces our charitable nature and
+                transparency in all our healthcare initiatives.
               </p>
             </div>
           </div>
@@ -554,7 +494,9 @@
     <section class="cta-section">
       <div class="container cta-container">
         <h2>Join us in our mission to make healthcare accessible to all.</h2>
-        <a href="#contact" class="btn btn-outline-white btn-lg">Support Our Cause</a>
+        <a href="#contact" class="btn btn-outline-white btn-lg"
+          >Support Our Cause</a
+        >
       </div>
     </section>
 
@@ -565,30 +507,9 @@
           <div class="footer-brand">
             <h3>Rotary Galaxy Scan Foundation</h3>
             <p>
-              A beacon of health and hope. Providing advanced scanning and
-              diagnostic services to the rural and urban poor at subsidized or
-              no cost.
+              Rotary Club of Udumalpet Galaxy, chartered in 2020, is dedicated to community service with expertise across legal, medical, technological, and entrepreneurial sectors. Our focus areas include health, education, economic development, and sustainability, driving impactful change for a brighter future.
             </p>
-            <div
-              class="registration-details"
-              style="
-                margin-top: 15px;
-                font-size: 0.95rem;
-                color: #cbd5e1;
-                line-height: 1.8;
-              "
-            >
-              <strong>NPO ID:</strong> TN/2020/100805S<br />
-              <strong>Registered Date:</strong> 05-03-2020<br />
-              <strong>Registration No:</strong> 17/2025/BK4<br />
-              <strong>Type:</strong> Trust (Indian Trusts Act, 1882)
-            </div>
-            <div class="social-icons">
-              <a href="#"><i class="fab fa-facebook-f"></i></a>
-              <a href="#"><i class="fab fa-twitter"></i></a>
-              <a href="#"><i class="fab fa-instagram"></i></a>
-              <a href="#"><i class="fab fa-linkedin-in"></i></a>
-            </div>
+
           </div>
           <div class="footer-links">
             <h4>Quick Links</h4>
@@ -618,22 +539,19 @@
             <h4>Contact Details</h4>
             <ul>
               <li>
-                <i class="fas fa-map-marker-alt"></i> 87, Sathasivam Street,
-                Udumalaipettai,<br />Tiruppur – 642129, Tamil Nadu
+                <i class="fas fa-map-marker-alt"></i> Rotary Club of Udumalpet
+                Galaxy,<br />Udumalpet - 642 126
               </li>
-              <li><i class="fas fa-phone"></i> +91 XXXXXXX55</li>
-              <li><i class="fas fa-envelope"></i> nazeertonazeer@gmail.com</li>
+              <li><i class="fas fa-phone"></i> +91 948 958 9992</li>
               <li>
-                <i class="fas fa-bullseye"></i> Sectors: Education &
-                Literacy,<br />Health & Family Welfare
+                <i class="fas fa-envelope"></i> rotaryudumalpetgalaxy@gmail.com
               </li>
             </ul>
           </div>
         </div>
         <div class="footer-bottom">
           <p>
-            &copy; 2023 Rotary Galaxy Scan Foundation. All Rights Reserved.
-            Precision in Care, Service in Action.
+            &copy; 2026 Rotary Club of Udumalpet Galaxy. All rights reserved. Developed By webxtechnosoft
           </p>
         </div>
       </div>
@@ -775,27 +693,27 @@
 
     <!-- Hamburger Nav Toggle JS -->
     <script>
-      (function() {
-        const hamburger = document.getElementById('hamburger');
-        const navLinks  = document.getElementById('nav-links');
-        const icon      = hamburger.querySelector('i');
+      (function () {
+        const hamburger = document.getElementById("hamburger");
+        const navLinks = document.getElementById("nav-links");
+        const icon = hamburger.querySelector("i");
 
         // Toggle open/close on hamburger click
-        hamburger.addEventListener('click', function() {
-          navLinks.classList.toggle('open');
+        hamburger.addEventListener("click", function () {
+          navLinks.classList.toggle("open");
           // Swap bars ↔ times icon
-          if (navLinks.classList.contains('open')) {
-            icon.classList.replace('fa-bars', 'fa-times');
+          if (navLinks.classList.contains("open")) {
+            icon.classList.replace("fa-bars", "fa-times");
           } else {
-            icon.classList.replace('fa-times', 'fa-bars');
+            icon.classList.replace("fa-times", "fa-bars");
           }
         });
 
         // Auto-close when any nav link is clicked
-        navLinks.querySelectorAll('a').forEach(function(link) {
-          link.addEventListener('click', function() {
-            navLinks.classList.remove('open');
-            icon.classList.replace('fa-times', 'fa-bars');
+        navLinks.querySelectorAll("a").forEach(function (link) {
+          link.addEventListener("click", function () {
+            navLinks.classList.remove("open");
+            icon.classList.replace("fa-times", "fa-bars");
           });
         });
       })();
@@ -803,86 +721,109 @@
     <!-- Interactive Gallery JS -->
     <script>
       let galleryInterval;
-      
+
       function changeGallery(thumbElement, imgSrc, isManual = true) {
         // Change Main Image
-        const mainImg = document.getElementById('gallery-main-img');
-        
+        const mainImg = document.getElementById("gallery-main-img");
+
         // Add fade out class
-        mainImg.classList.remove('fade-in');
+        mainImg.classList.remove("fade-in");
         mainImg.style.opacity = 0;
-        
+
         setTimeout(() => {
           mainImg.src = imgSrc;
           mainImg.style.opacity = 1;
-          mainImg.classList.add('fade-in');
+          mainImg.classList.add("fade-in");
         }, 300);
 
         // Update active thumb
-        document.querySelectorAll('.gallery-thumbnails .thumb').forEach(t => t.classList.remove('active'));
-        thumbElement.classList.add('active');
+        document
+          .querySelectorAll(".gallery-thumbnails .thumb")
+          .forEach((t) => t.classList.remove("active"));
+        thumbElement.classList.add("active");
 
         // Reset timer if clicked manually
-        if(isManual) {
-            clearInterval(galleryInterval);
-            startGalleryAutoPlay();
+        if (isManual) {
+          clearInterval(galleryInterval);
+          startGalleryAutoPlay();
         }
       }
 
       function scrollThumbnails(direction) {
-        const track = document.getElementById('gallery-thumbnails');
+        const track = document.getElementById("gallery-thumbnails");
         const scrollAmount = 150 * direction;
-        track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        track.scrollBy({ left: scrollAmount, behavior: "smooth" });
       }
-      
+
       function startGalleryAutoPlay() {
         galleryInterval = setInterval(() => {
-            const thumbs = Array.from(document.querySelectorAll('.gallery-thumbnails .thumb'));
-            const activeIndex = thumbs.findIndex(t => t.classList.contains('active'));
-            let nextIndex = activeIndex + 1;
-            if (nextIndex >= thumbs.length) nextIndex = 0; // loop back
-            
-            const nextThumb = thumbs[nextIndex];
-            // false flag means it's auto-playing, don't clear interval
-            changeGallery(nextThumb, nextThumb.src, false);
+          const thumbs = Array.from(
+            document.querySelectorAll(".gallery-thumbnails .thumb"),
+          );
+          const activeIndex = thumbs.findIndex((t) =>
+            t.classList.contains("active"),
+          );
+          let nextIndex = activeIndex + 1;
+          if (nextIndex >= thumbs.length) nextIndex = 0; // loop back
+
+          const nextThumb = thumbs[nextIndex];
+          // false flag means it's auto-playing, don't clear interval
+          changeGallery(nextThumb, nextThumb.src, false);
         }, 3500); // Change image every 3.5 seconds
       }
 
       // Start the carousel when page loads
-      window.addEventListener('load', () => {
-          startGalleryAutoPlay();
+      window.addEventListener("load", () => {
+        startGalleryAutoPlay();
       });
 
       /* ---- Animated Stat Counters ---- */
       function animateCounters() {
-        document.querySelectorAll('.hstat-num').forEach(el => {
+        document.querySelectorAll(".hstat-num").forEach((el) => {
           const target = +el.dataset.target;
           const duration = 2000;
           const step = target / (duration / 16);
           let current = 0;
           const timer = setInterval(() => {
             current += step;
-            if (current >= target) { current = target; clearInterval(timer); }
+            if (current >= target) {
+              current = target;
+              clearInterval(timer);
+            }
             el.textContent = Math.floor(current).toLocaleString();
           }, 16);
         });
       }
 
-      // Run counters after intro fades (3.4s) or on first scroll
+      // Run counters on load or first scroll
       let countersRun = false;
       function runOnce() {
-        if (!countersRun) { countersRun = true; animateCounters(); }
+        if (!countersRun) {
+          countersRun = true;
+          animateCounters();
+        }
       }
-      setTimeout(runOnce, 3500);
-      window.addEventListener('scroll', runOnce, { once: true });
+      setTimeout(runOnce, 500);
+      window.addEventListener("scroll", runOnce, { once: true });
     </script>
 
     <!-- ============ DONATE MODAL ============ -->
-    <div id="donateModal" class="dmodal-overlay" role="dialog" aria-modal="true" aria-labelledby="dmodalTitle">
+    <div
+      id="donateModal"
+      class="dmodal-overlay"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="dmodalTitle"
+    >
       <div class="dmodal-card">
-
         <!-- Close button -->
-        <button class="dmodal-close" onclick="closeDonateModal()" aria-label="Close">&times;</button>
+        <button
+          class="dmodal-close"
+          onclick="closeDonateModal()"
+          aria-label="Close"
+        >
+          &times;
+        </button>
 
         <!-- Header -->
         <div class="dmodal-header">
@@ -890,19 +831,50 @@
             <i class="fas fa-hand-holding-heart"></i>
           </div>
           <h2 id="dmodalTitle">Make a Donation</h2>
-          <p>Your contribution funds subsidised scans for those who cannot afford care.</p>
+          <p>
+            Your contribution funds subsidised scans for those who cannot afford
+            care.
+          </p>
         </div>
 
         <!-- Amount Presets -->
         <div class="dmodal-amounts">
-          <button class="damount-btn" data-val="500" onclick="selectAmount(this)">₹500</button>
-          <button class="damount-btn" data-val="1000" onclick="selectAmount(this)">₹1,000</button>
-          <button class="damount-btn active" data-val="2000" onclick="selectAmount(this)">₹2,000</button>
-          <button class="damount-btn" data-val="5000" onclick="selectAmount(this)">₹5,000</button>
+          <button
+            class="damount-btn"
+            data-val="500"
+            onclick="selectAmount(this)"
+          >
+            ₹500
+          </button>
+          <button
+            class="damount-btn"
+            data-val="1000"
+            onclick="selectAmount(this)"
+          >
+            ₹1,000
+          </button>
+          <button
+            class="damount-btn active"
+            data-val="2000"
+            onclick="selectAmount(this)"
+          >
+            ₹2,000
+          </button>
+          <button
+            class="damount-btn"
+            data-val="5000"
+            onclick="selectAmount(this)"
+          >
+            ₹5,000
+          </button>
         </div>
 
         <!-- Form -->
-        <form class="dmodal-form" id="donateForm" onsubmit="submitDonate(event)">
+        <form
+          class="dmodal-form"
+          id="donateForm"
+          onsubmit="submitDonate(event)"
+        >
           <div class="dform-row">
             <div class="dform-group">
               <label>Full Name</label>
@@ -910,20 +882,41 @@
             </div>
             <div class="dform-group">
               <label>Mobile Number</label>
-              <input type="tel" id="dPhone" placeholder="+91 00000 00000" required />
+              <input
+                type="tel"
+                id="dPhone"
+                placeholder="+91 00000 00000"
+                required
+              />
             </div>
           </div>
           <div class="dform-group">
             <label>Email Address</label>
-            <input type="email" id="dEmail" placeholder="you@example.com" required />
+            <input
+              type="email"
+              id="dEmail"
+              placeholder="you@example.com"
+              required
+            />
           </div>
           <div class="dform-group">
             <label>Donation Amount (₹)</label>
-            <input type="number" id="dAmount" placeholder="Enter amount" value="2000" min="1" required />
+            <input
+              type="number"
+              id="dAmount"
+              placeholder="Enter amount"
+              value="2000"
+              min="1"
+              required
+            />
           </div>
           <div class="dform-group">
             <label>Message (optional)</label>
-            <textarea id="dMessage" rows="2" placeholder="Your message of support..."></textarea>
+            <textarea
+              id="dMessage"
+              rows="2"
+              placeholder="Your message of support..."
+            ></textarea>
           </div>
           <button type="submit" class="dmodal-submit" id="dSubmitBtn">
             <i class="fas fa-heart"></i> Donate Now
@@ -931,137 +924,135 @@
         </form>
 
         <!-- Success State (hidden by default) -->
-        <div class="dmodal-success" id="donateSuccess" style="display:none;">
+        <div class="dmodal-success" id="donateSuccess" style="display: none">
           <div class="dsuccess-icon"><i class="fas fa-check-circle"></i></div>
           <h3>Thank You! 🙏</h3>
-          <p>Your generous donation has been received. We will contact you shortly with payment details.</p>
-          <button onclick="closeDonateModal()" class="dmodal-submit" style="margin-top:20px;">Close</button>
+          <p>
+            Your generous donation has been received. We will contact you
+            shortly with payment details.
+          </p>
+          <button
+            onclick="closeDonateModal()"
+            class="dmodal-submit"
+            style="margin-top: 20px"
+          >
+            Close
+          </button>
         </div>
-
       </div>
     </div>
 
-    <!-- CINEMATIC INTRO SCRIPT -->
+    <!-- MOBILE NAVBAR SCRIPT -->
     <script>
-    (function () {
-      const overlay = document.getElementById('introOverlay');
-      const body    = document.body;
-      const canvas  = document.getElementById('introCanvas');
-      const ctx     = canvas.getContext('2d');
-
-      /* ---------- CANVAS PARTICLES ---------- */
-      let W, H, particles = [];
-      function resize() {
-        W = canvas.width  = window.innerWidth;
-        H = canvas.height = window.innerHeight;
-      }
-      resize();
-      window.addEventListener('resize', resize);
-
-      function randomParticle() {
-        return {
-          x: Math.random() * W,
-          y: Math.random() * H,
-          r: Math.random() * 2.5 + 0.5,
-          dx: (Math.random() - 0.5) * 0.6,
-          dy: -Math.random() * 0.8 - 0.2,
-          alpha: Math.random() * 0.6 + 0.2
-        };
-      }
-
-      for (let i = 0; i < 120; i++) particles.push(randomParticle());
-
-      let animId;
-      function drawParticles() {
-        ctx.clearRect(0, 0, W, H);
-        particles.forEach(p => {
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(255,255,255,${p.alpha})`;
-          ctx.fill();
-          p.x += p.dx;
-          p.y += p.dy;
-          if (p.y < -5 || p.x < -5 || p.x > W + 5) {
-            Object.assign(p, randomParticle());
-            p.y = H + 5;
+      document
+        .getElementById("hamburger")
+        .addEventListener("click", function () {
+          document.getElementById("navbar").classList.toggle("open");
+          const icon = this.querySelector("i");
+          if (document.getElementById("navbar").classList.contains("open")) {
+            icon.classList.remove("fa-bars");
+            icon.classList.add("fa-times");
+          } else {
+            icon.classList.remove("fa-times");
+            icon.classList.add("fa-bars");
           }
         });
-        animId = requestAnimationFrame(drawParticles);
-      }
-      drawParticles();
 
-      /* ---------- DISMISS ---------- */
-      function dismissIntro() {
-        cancelAnimationFrame(animId);
-        overlay.classList.add('intro-fade-out');
-        setTimeout(() => {
-          overlay.style.display = 'none';
-          body.classList.remove('intro-active');
-        }, 700);
-      }
-
-      // Auto dismiss after 3.2 s (0.2 s buffer for animation)
-      setTimeout(dismissIntro, 3200);
-
-      // Skip on click / tap
-      overlay.addEventListener('click', dismissIntro);
-    })();
+      // Auto-close nav when a link is clicked
+      document.querySelectorAll(".nav-item").forEach((item) => {
+        item.addEventListener("click", () => {
+          document.getElementById("navbar").classList.remove("open");
+          document
+            .querySelector("#hamburger i")
+            .classList.replace("fa-times", "fa-bars");
+        });
+      });
     </script>
 
     <!-- DONATE MODAL SCRIPT -->
     <script>
-    const donateModal = document.getElementById('donateModal');
+      const donateModal = document.getElementById("donateModal");
 
-    function openDonateModal() {
-      donateModal.classList.add('active');
-      document.body.style.overflow = 'hidden';
-      // Reset form view
-      document.getElementById('donateForm').style.display = 'flex';
-      document.getElementById('donateSuccess').style.display = 'none';
-    }
+      function openDonateModal() {
+        donateModal.classList.add("active");
+        document.body.style.overflow = "hidden";
+        // Reset form view
+        document.getElementById("donateForm").style.display = "flex";
+        document.getElementById("donateSuccess").style.display = "none";
+      }
 
-    function closeDonateModal() {
-      donateModal.classList.remove('active');
-      document.body.style.overflow = '';
-    }
+      function closeDonateModal() {
+        donateModal.classList.remove("active");
+        document.body.style.overflow = "";
+      }
 
-    // Close on overlay click (outside the card)
-    donateModal.addEventListener('click', function(e) {
-      if (e.target === donateModal) closeDonateModal();
-    });
+      // Close on overlay click (outside the card)
+      donateModal.addEventListener("click", function (e) {
+        if (e.target === donateModal) closeDonateModal();
+      });
 
-    // Close on Escape key
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') closeDonateModal();
-    });
+      // Close on Escape key
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") closeDonateModal();
+      });
 
-    // Preset amount selection
-    function selectAmount(btn) {
-      document.querySelectorAll('.damount-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      document.getElementById('dAmount').value = btn.dataset.val;
-    }
+      // Preset amount selection
+      function selectAmount(btn) {
+        document
+          .querySelectorAll(".damount-btn")
+          .forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        document.getElementById("dAmount").value = btn.dataset.val;
+      }
 
-    // Form submit
-    function submitDonate(e) {
-      e.preventDefault();
-      const btn = document.getElementById('dSubmitBtn');
-      btn.disabled = true;
-      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+      // Form submit
+      function submitDonate(e) {
+        e.preventDefault();
+        const btn = document.getElementById("dSubmitBtn");
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
 
-      // Simulate a 1.5s processing delay then show success
-      setTimeout(() => {
-        document.getElementById('donateForm').style.display = 'none';
-        document.getElementById('donateSuccess').style.display = 'block';
-        btn.disabled = false;
-        btn.innerHTML = '<i class="fas fa-heart"></i> Donate Now';
-        // Reset form fields
-        document.getElementById('donateForm').reset();
-        document.getElementById('dAmount').value = '2000';
-        document.querySelectorAll('.damount-btn').forEach(b => b.classList.remove('active'));
-        document.querySelector('.damount-btn[data-val="2000"]').classList.add('active');
-      }, 1500);
-    }
+        // Simulate a 1.5s processing delay then show success
+        setTimeout(() => {
+          document.getElementById("donateForm").style.display = "none";
+          document.getElementById("donateSuccess").style.display = "block";
+          btn.disabled = false;
+          btn.innerHTML = '<i class="fas fa-heart"></i> Donate Now';
+          // Reset form fields
+          document.getElementById("donateForm").reset();
+          document.getElementById("dAmount").value = "2000";
+          document
+            .querySelectorAll(".damount-btn")
+            .forEach((b) => b.classList.remove("active"));
+          document
+            .querySelector('.damount-btn[data-val="2000"]')
+            .classList.add("active");
+        }, 1500);
+      }
+    </script>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- Initialize Swiper -->
+    <script>
+      var heroSwiper = new Swiper(".heroSwiper", {
+        effect: "fade", // fade transition for gethu look
+        fadeEffect: { crossFade: true },
+        speed: 1500,
+        loop: true,
+        autoplay: {
+          delay: 4000,
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      });
     </script>
   </body>
 </html>
