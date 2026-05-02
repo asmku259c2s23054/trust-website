@@ -218,7 +218,6 @@
               />
             </div>
           </div>
-         
         </div>
         <!-- Add Pagination -->
         <div class="swiper-pagination"></div>
@@ -586,6 +585,1235 @@
       </div>
     </section>
 
+    <!-- ══════════════════════════════════════════════════════════
+         7. EVENTS PAGE 2 — Cinematic Slideshow
+    ══════════════════════════════════════════════════════════ -->
+    <section id="events2" class="cs-section" aria-label="Cinematic Events">
+      <div class="cs-bg" id="csBg"></div>
+      <div class="cs-overlay"></div>
+      <div class="cs-stage" id="csStage"></div>
+      <div class="cs-progress" id="csProgress"></div>
+    </section>
+
+    <!-- ── Cinematic Slideshow CSS ── -->
+    <style>
+      .cs-section {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+        background: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Background — hidden on white theme */
+      .cs-bg {
+        display: none;
+      }
+
+      /* No overlay on white theme */
+      .cs-overlay {
+        display: none;
+      }
+
+      /* Stage */
+      .cs-stage {
+        position: relative;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        height: 100%;
+        padding: 0 30px;
+        box-sizing: border-box;
+      }
+
+      /* Cards */
+      .cs-card {
+        position: relative;
+        border-radius: 14px;
+        overflow: hidden;
+        flex-shrink: 0;
+        cursor: pointer;
+        box-shadow: 0 6px 28px rgba(0, 0, 0, 0.14);
+        width: 14vw;
+        height: 55vh;
+        opacity: 0;
+        transition:
+          width 1s cubic-bezier(0.77, 0, 0.175, 1),
+          height 1s cubic-bezier(0.77, 0, 0.175, 1),
+          opacity 0.7s ease,
+          transform 0.9s cubic-bezier(0.77, 0, 0.175, 1),
+          box-shadow 0.7s ease,
+          filter 0.8s ease;
+      }
+      .cs-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        pointer-events: none;
+      }
+
+      /* Progress dots */
+      .cs-progress {
+        position: absolute;
+        bottom: 26px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 7px;
+        z-index: 30;
+      }
+      .cs-dot {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: rgba(0, 0, 0, 0.2);
+        transition:
+          background 0.4s ease,
+          transform 0.4s ease;
+        cursor: pointer;
+      }
+      .cs-dot.active {
+        background: #f7c200;
+        transform: scale(1.5);
+      }
+
+      /* ── Responsive Breakpoints ── */
+
+      /* Tablet landscape (769–1024px) */
+      @media (max-width: 1024px) {
+        .cs-stage { gap: 8px; padding: 0 20px; }
+        .cs-card  { width: 15vw; height: 50vh; border-radius: 12px; }
+      }
+
+      /* Tablet portrait (481–768px) */
+      @media (max-width: 768px) {
+        .cs-stage { gap: 6px; padding: 0 12px; }
+        .cs-card  { width: 18vw; height: 42vh; border-radius: 10px; }
+        .cs-progress { bottom: 18px; gap: 5px; }
+        .cs-dot   { width: 4px; height: 4px; }
+      }
+
+      /* Mobile (≤480px) */
+      @media (max-width: 480px) {
+        .cs-stage { gap: 4px; padding: 0 6px; }
+        .cs-card  { width: 20vw; height: 34vh; border-radius: 8px; }
+        .cs-progress { bottom: 14px; gap: 4px; }
+        .cs-dot   { width: 3px; height: 3px; }
+      }
+    </style>
+
+    <!-- ── Cinematic Slideshow JS ── -->
+    <script>
+      (function () {
+        var slides = [
+          {
+            img: "images/updateimgs/WhatsApp Image 2026-05-01 at 9.46.37 PM.jpeg",
+            title: "District Governor's Visit",
+            desc: "An honour welcoming the District Governor to our foundation.",
+          },
+          {
+            img: "images/updateimgs/WhatsApp Image 2026-05-01 at 9.46.38 PM (1).jpeg",
+            title: "Community Health Camp",
+            desc: "Free health screenings for over 500 residents.",
+          },
+          {
+            img: "images/updateimgs/WhatsApp Image 2026-05-01 at 9.46.38 PM (2).jpeg",
+            title: "Free Diagnostic Drive",
+            desc: "Mobile diagnostic units reaching rural doorsteps.",
+          },
+          {
+            img: "images/updateimgs/WhatsApp Image 2026-05-01 at 9.46.38 PM.jpeg",
+            title: "Medical Outreach Programme",
+            desc: "Connecting expert doctors with underserved communities.",
+          },
+          {
+            img: "images/updateimgs/WhatsApp Image 2026-05-01 at 9.46.39 PM (1).jpeg",
+            title: "Awareness & Education Camp",
+            desc: "Educating families on preventive healthcare.",
+          },
+          {
+            img: "images/updateimgs/WhatsApp Image 2026-05-01 at 9.46.39 PM.jpeg",
+            title: "Rotary Annual Gathering",
+            desc: "Celebrating service, impact, and fellowship.",
+          },
+          {
+            img: "images/updateimgs/WhatsApp Image 2026-05-01 at 9.46.40 PM (1).jpeg",
+            title: "Rural Wellness Initiative",
+            desc: "Nutritional and maternal health drives in rural zones.",
+          },
+          {
+            img: "images/updateimgs/WhatsApp Image 2026-05-01 at 9.46.41 PM (1).jpeg",
+            title: "Diagnostic Outreach Camp",
+            desc: "Scans and lab services delivered to remote villages.",
+          },
+          {
+            img: "images/updateimgs/WhatsApp Image 2026-05-01 at 9.46.41 PM (2).jpeg",
+            title: "Community Welfare Meet",
+            desc: "Leaders, doctors, and volunteers working together.",
+          },
+          {
+            img: "images/updateimgs/WhatsApp Image 2026-05-01 at 9.46.41 PM.jpeg",
+            title: "Village Healthcare Programme",
+            desc: "Door-to-door health screening for village households.",
+          },
+          {
+            img: "images/updateimgs/WhatsApp Image 2026-05-01 at 9.46.42 PM (1).jpeg",
+            title: "Free Consultation Camp",
+            desc: "Expert doctors providing free consultation at zero cost.",
+          },
+          {
+            img: "images/updateimgs/WhatsApp Image 2026-05-01 at 9.46.42 PM.jpeg",
+            title: "Rotary Service Day",
+            desc: "A day of service, compassion, and community pride.",
+          },
+          {
+            img: "images/updateimgs/WhatsApp Image 2026-05-01 at 9.46.43 PM.jpeg",
+            title: "Annual Foundation Event",
+            desc: "Celebrating another year of meaningful impact.",
+          },
+        ];
+
+        var section = document.getElementById("events2");
+        var stage = document.getElementById("csStage");
+        var bg = document.getElementById("csBg");
+        var progressEl = document.getElementById("csProgress");
+
+        var STRIP = 5; /* total cards visible */
+        var FOCUS = 2; /* which slot is center (0-indexed) */
+        var focus = 0; /* current slide index */
+        var busy = false;
+
+        /* ── Build dots ── */
+        slides.forEach(function (_, i) {
+          var d = document.createElement("div");
+          d.className = "cs-dot" + (i === 0 ? " active" : "");
+          d.addEventListener("click", function () {
+            if (!busy) jumpTo(i);
+          });
+          progressEl.appendChild(d);
+        });
+
+        /* ── Create card elements ── */
+        var cards = [];
+        for (var i = 0; i < STRIP; i++) {
+          var c = document.createElement("div");
+          c.className = "cs-card";
+          var img = document.createElement("img");
+          img.loading = "lazy";
+          c.appendChild(img);
+          stage.appendChild(c);
+          cards.push(c);
+        }
+
+        /* ── Helpers ── */
+        function idx(offset) {
+          return (
+            (((focus + offset) % slides.length) + slides.length) % slides.length
+          );
+        }
+        function setBg(i) {
+          bg.style.backgroundImage = 'url("' + slides[i].img + '")';
+        }
+        function updateDots() {
+          Array.from(progressEl.querySelectorAll(".cs-dot")).forEach(
+            function (d, i) {
+              d.classList.toggle("active", i === focus);
+            },
+          );
+        }
+
+        /* ── Inline style helpers ── */
+        function cardStyle(card, props) {
+          Object.assign(card.style, props);
+        }
+        function noTransition(card) {
+          card.style.transition = "none";
+        }
+        function setTransition(card, t) {
+          card.style.transition = t;
+        }
+
+        /* ── Phase 1: Staggered strip entry ── */
+        function enterStrip(afterDone) {
+          for (var i = 0; i < STRIP; i++) {
+            var s = slides[idx(i - FOCUS)];
+            cards[i].querySelector("img").src = s.img;
+            noTransition(cards[i]);
+            cardStyle(cards[i], {
+              width: "14vw",
+              height: "55vh",
+              opacity: "0",
+              filter: "brightness(0.75) saturate(0.8)",
+              transform: "translateY(50px) scale(0.88)",
+              boxShadow: "0 8px 40px rgba(0,0,0,0.55)",
+              minWidth: "",
+              padding: "",
+              margin: "",
+            });
+          }
+          /* Force reflow */
+          stage.getBoundingClientRect();
+
+          cards.forEach(function (card, i) {
+            setTimeout(
+              function () {
+                setTransition(
+                  card,
+                  "opacity 0.8s cubic-bezier(0.25,0.46,0.45,0.94)," +
+                    "transform 0.9s cubic-bezier(0.25,0.46,0.45,0.94)," +
+                    "filter 0.7s ease",
+                );
+                cardStyle(card, {
+                  opacity: i === FOCUS ? "1" : "0.6",
+                  transform: "translateY(0) scale(1)",
+                  filter: "brightness(0.75) saturate(0.8)",
+                });
+              },
+              i * 160 + 180,
+            );
+          });
+
+          if (afterDone) setTimeout(afterDone, STRIP * 160 + 1100);
+        }
+
+        /* ── Phase 2: Exit last, expand center ── */
+        function expandCenter(afterDone) {
+          busy = true;
+
+          /* Slide out rightmost card */
+          var last = cards[STRIP - 1];
+          setTransition(
+            last,
+            "transform 0.65s cubic-bezier(0.77,0,0.175,1)," +
+              "opacity 0.45s ease",
+          );
+          cardStyle(last, {
+            transform: "translateX(140px) scale(0.8)",
+            opacity: "0",
+          });
+
+          setTimeout(function () {
+            /* Collapse last card to zero width */
+            setTransition(last, "width 0.45s ease, min-width 0.45s ease");
+            cardStyle(last, {
+              width: "0",
+              minWidth: "0",
+              padding: "0",
+              margin: "0",
+            });
+
+            setTimeout(function () {
+              var w = window.innerWidth;
+              var focusW, focusH, sideW, sideH;
+              if (w <= 480) {
+                focusW = '82vw'; focusH = '62vh';
+                sideW  = '6vw';  sideH  = '36vh';
+              } else if (w <= 768) {
+                focusW = '70vw'; focusH = '68vh';
+                sideW  = '8vw';  sideH  = '44vh';
+              } else if (w <= 1024) {
+                focusW = '58vw'; focusH = '74vh';
+                sideW  = '10vw'; sideH  = '50vh';
+              } else {
+                focusW = '54vw'; focusH = '80vh';
+                sideW  = '10vw'; sideH  = '48vh';
+              }
+              /* Expand focus card */
+              for (var i = 0; i < STRIP; i++) {
+                if (i === STRIP - 1) continue; /* already collapsed */
+                if (i === FOCUS) {
+                  setTransition(
+                    cards[i],
+                    "width 1.05s cubic-bezier(0.77,0,0.175,1)," +
+                      "height 1.05s cubic-bezier(0.77,0,0.175,1)," +
+                      "box-shadow 0.9s ease," +
+                      "filter 0.9s ease," +
+                      "opacity 0.5s ease",
+                  );
+                  cardStyle(cards[i], {
+                    width: focusW, height: focusH,
+                    opacity: "1",
+                    filter: "brightness(1) saturate(1.15)",
+                    boxShadow: "0 20px 60px rgba(0,0,0,0.18)",
+                  });
+                } else {
+                  setTransition(
+                    cards[i],
+                    "width 0.95s cubic-bezier(0.77,0,0.175,1)," +
+                      "height 0.9s ease," +
+                      "opacity 0.7s ease," +
+                      "filter 0.8s ease",
+                  );
+                  cardStyle(cards[i], {
+                    width: sideW, height: sideH,
+                    opacity: "0.38",
+                    filter: "brightness(0.55) saturate(0.55)",
+                  });
+                }
+              }
+
+              /* Done */
+              setTimeout(function () {
+                updateDots();
+                busy = false;
+                if (afterDone) afterDone();
+              }, 950);
+            }, 380);
+          }, 580);
+        }
+
+        /* ── Blur-fade cross-transition to next slide ── */
+        function nextSlide() {
+          if (busy) return;
+          busy = true;
+
+          /* Blur all out */
+          cards.forEach(function (card) {
+            setTransition(
+              card,
+              "opacity 0.55s ease, filter 0.55s ease, transform 0.55s ease",
+            );
+            cardStyle(card, {
+              opacity: "0",
+              filter: "blur(10px) brightness(0.4)",
+              transform: "scale(0.93)",
+            });
+          });
+
+          setTimeout(function () {
+            focus = (focus + 1) % slides.length;
+            setBg(focus);
+
+            /* Reset strip */
+            for (var i = 0; i < STRIP; i++) {
+              var s = slides[idx(i - FOCUS)];
+              cards[i].querySelector("img").src = s.img;
+              noTransition(cards[i]);
+              cardStyle(cards[i], {
+                width: "14vw",
+                height: "55vh",
+                opacity: "0",
+                filter: "brightness(0.75) saturate(0.8)",
+                transform: "translateY(30px) scale(0.9)",
+                boxShadow: "0 8px 40px rgba(0,0,0,0.55)",
+                minWidth: "",
+                padding: "",
+                margin: "",
+              });
+            }
+            stage.getBoundingClientRect();
+
+            /* Strip fade in */
+            cards.forEach(function (card, i) {
+              setTimeout(function () {
+                setTransition(
+                  card,
+                  "opacity 0.7s ease, transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94), filter 0.7s ease",
+                );
+                cardStyle(card, {
+                  opacity: i === FOCUS ? "1" : "0.6",
+                  transform: "translateY(0) scale(1)",
+                  filter: "brightness(0.75) saturate(0.8)",
+                });
+              }, i * 110);
+            });
+
+            /* Expand */
+            setTimeout(
+              function () {
+                busy = false;
+                expandCenter(function () {
+                  setTimeout(nextSlide, 3800);
+                });
+              },
+              STRIP * 110 + 900,
+            );
+          }, 620);
+        }
+
+        /* ── Jump to dot click ── */
+        function jumpTo(i) {
+          if (busy || i === focus) return;
+          busy = true;
+          hideCaption();
+          focus = i;
+          setBg(focus);
+          enterStrip(function () {
+            expandCenter(function () {
+              setTimeout(nextSlide, 3800);
+            });
+          });
+        }
+
+        /* ── Start when section enters viewport ── */
+        var started = false;
+        var observer = new IntersectionObserver(
+          function (entries) {
+            if (entries[0].isIntersecting && !started) {
+              started = true;
+              setBg(focus);
+              enterStrip(function () {
+                expandCenter(function () {
+                  setTimeout(nextSlide, 3800);
+                });
+              });
+            }
+          },
+          { threshold: 0.25 },
+        );
+        observer.observe(section);
+      })();
+    </script>
+
+    <!-- ══════════════════════════════════════════════════════════
+
+         8. EVENTS PAGE 3 — Premium Cinematic Fullscreen Slider
+    ══════════════════════════════════════════════════════════ -->
+    <section
+      id="events3"
+      class="ev3-section"
+      aria-label="Featured Events Slider"
+    >
+      <!-- ── Fullscreen blurred background (two layers for crossfade) ── -->
+      <div class="ev3-bg" id="ev3BgA"></div>
+      <div class="ev3-bg ev3-bg-b" id="ev3BgB"></div>
+      <div class="ev3-bg-tint"></div>
+
+      <!-- ── Section label ── -->
+      <div class="ev3-label">
+        <span class="ev3-kicker">OUR EVENTS</span>
+        <h2 class="ev3-section-title">Foundation Highlights</h2>
+      </div>
+
+      <!-- ── Card stage (3D perspective container) ── -->
+      <div class="ev3-stage">
+        <!-- ← Prev button -->
+        <button
+          class="ev3-nav ev3-prev"
+          id="ev3Prev"
+          aria-label="Previous slide"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polyline points="15 18 9 12 15 6" />
+          </svg>
+        </button>
+
+        <!-- Card wrapper (flip perspective) -->
+        <div class="ev3-card-wrap" id="ev3CardWrap">
+          <!-- FRONT face (always visible) -->
+          <div class="ev3-card" id="ev3Card">
+            <!-- Image preview inside card -->
+            <div class="ev3-card-img-wrap">
+              <img class="ev3-card-img" id="ev3CardImg" src="" alt="" />
+              <!-- Price / number badge -->
+              <span class="ev3-badge" id="ev3Badge">01 / 14</span>
+            </div>
+
+            <!-- Card body text -->
+            <div class="ev3-card-body">
+              <div class="ev3-card-meta">
+                <span class="ev3-season" id="ev3Season">Healthcare</span>
+                <span class="ev3-date" id="ev3Date"
+                  >Rotary Club · Udumalpet Galaxy</span
+                >
+              </div>
+              <h3 class="ev3-card-title" id="ev3Title">Event Name</h3>
+              <p class="ev3-card-desc" id="ev3Desc">
+                Rotary Galaxy Scan Foundation community outreach programme.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- → Next button -->
+        <button class="ev3-nav ev3-next" id="ev3Next" aria-label="Next slide">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polyline points="9 18 15 12 9 6" />
+          </svg>
+        </button>
+      </div>
+      <!-- /.ev3-stage -->
+
+      <!-- Dot indicators -->
+      <div class="ev3-dots" id="ev3Dots"></div>
+    </section>
+
+    <!-- ── EVENTS PAGE 3 : CSS ── -->
+    <style>
+      /* ── Reset scope ── */
+      .ev3-section *,
+      .ev3-section *::before,
+      .ev3-section *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* ── Fullscreen section ── */
+      .ev3-section {
+        position: relative;
+        width: 100%;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        font-family: "Inter", "Outfit", sans-serif;
+        padding: 60px 20px 80px;
+      }
+
+      /* ── Background layers (slide animation) ── */
+      .ev3-bg {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        filter: brightness(0.5) saturate(1.2);
+        z-index: 0;
+        transition: transform 0.75s cubic-bezier(0.77, 0, 0.175, 1);
+        will-change: transform;
+      }
+      /* bgB starts hidden off-screen to the right */
+      .ev3-bg-b {
+        transform: translateX(100%);
+        z-index: 1;
+      }
+
+      /* Dark tint on top of backgrounds */
+      .ev3-bg-tint {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          160deg,
+          rgba(0, 0, 0, 0.35) 0%,
+          rgba(0, 0, 0, 0.2) 50%,
+          rgba(0, 0, 0, 0.5) 100%
+        );
+        z-index: 2;
+      }
+
+      /* ── Section label ── */
+      .ev3-label {
+        position: relative;
+        z-index: 10;
+        text-align: center;
+        margin-bottom: 40px;
+        color: #fff;
+      }
+      .ev3-kicker {
+        display: block;
+        font-size: 0.68rem;
+        font-weight: 600;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.6);
+        margin-bottom: 8px;
+      }
+      .ev3-section-title {
+        font-family: "Outfit", sans-serif;
+        font-size: clamp(1.6rem, 4vw, 2.6rem);
+        font-weight: 700;
+        color: #fff;
+        letter-spacing: -0.02em;
+        text-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+      }
+
+      /* ── Stage (centers card between nav buttons) ── */
+      .ev3-stage {
+        position: relative;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 32px;
+        width: 100%;
+        max-width: 900px;
+      }
+
+      /* ── Nav buttons ── */
+      .ev3-nav {
+        flex-shrink: 0;
+        width: 52px;
+        height: 52px;
+        border: 1.5px solid rgba(255, 255, 255, 0.35);
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        color: #fff;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition:
+          background 0.25s,
+          border-color 0.25s,
+          transform 0.2s;
+        outline: none;
+      }
+      .ev3-nav:hover {
+        background: rgba(255, 255, 255, 0.22);
+        border-color: rgba(255, 255, 255, 0.7);
+        transform: scale(1.08);
+      }
+      .ev3-nav svg {
+        width: 22px;
+        height: 22px;
+      }
+
+      /* ── Card wrapper — 3D perspective ── */
+      .ev3-card-wrap {
+        flex: 1;
+        max-width: 680px;
+        perspective: 1200px;
+      }
+
+      /* ── The card itself ── */
+      .ev3-card {
+        width: 100%;
+        background: #ffffff;
+        border: none;
+        border-top: 4px solid #f0a500; /* gold accent top bar */
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow:
+          0 20px 50px rgba(0, 63, 138, 0.18),
+          0 4px 16px rgba(0, 0, 0, 0.1);
+        transition:
+          transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1),
+          box-shadow 0.25s ease;
+        transform-origin: center center;
+        will-change: transform;
+        cursor: default;
+      }
+      .ev3-card:hover {
+        transform: translateY(-6px) scale(1.012);
+        box-shadow:
+          0 32px 70px rgba(0, 63, 138, 0.25),
+          0 8px 24px rgba(0, 0, 0, 0.12);
+      }
+
+      /* ── Card flip animation classes ── */
+      .ev3-card-wrap.flipping-out .ev3-card {
+        animation: ev3FlipOut 0.38s cubic-bezier(0.55, 0, 1, 0.45) forwards;
+      }
+      .ev3-card-wrap.flipping-in .ev3-card {
+        animation: ev3FlipIn 0.42s cubic-bezier(0, 0.55, 0.45, 1) forwards;
+      }
+      /* Reverse direction for "prev" */
+      .ev3-card-wrap.flipping-out.reverse .ev3-card {
+        animation: ev3FlipOutRev 0.38s cubic-bezier(0.55, 0, 1, 0.45) forwards;
+      }
+      .ev3-card-wrap.flipping-in.reverse .ev3-card {
+        animation: ev3FlipInRev 0.42s cubic-bezier(0, 0.55, 0.45, 1) forwards;
+      }
+
+      @keyframes ev3FlipOut {
+        0% {
+          transform: perspective(900px) rotateY(0deg) scale(1);
+          opacity: 1;
+        }
+        100% {
+          transform: perspective(900px) rotateY(-80deg) scale(0.9);
+          opacity: 0;
+        }
+      }
+      @keyframes ev3FlipIn {
+        0% {
+          transform: perspective(900px) rotateY(80deg) scale(0.9);
+          opacity: 0;
+        }
+        100% {
+          transform: perspective(900px) rotateY(0deg) scale(1);
+          opacity: 1;
+        }
+      }
+      @keyframes ev3FlipOutRev {
+        0% {
+          transform: perspective(900px) rotateY(0deg) scale(1);
+          opacity: 1;
+        }
+        100% {
+          transform: perspective(900px) rotateY(80deg) scale(0.9);
+          opacity: 0;
+        }
+      }
+      @keyframes ev3FlipInRev {
+        0% {
+          transform: perspective(900px) rotateY(-80deg) scale(0.9);
+          opacity: 0;
+        }
+        100% {
+          transform: perspective(900px) rotateY(0deg) scale(1);
+          opacity: 1;
+        }
+      }
+
+      /* ── Image area inside card ── */
+      .ev3-card-img-wrap {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        overflow: hidden;
+        border-radius: 18px 18px 0 0;
+      }
+      .ev3-card-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.6s ease;
+      }
+      .ev3-card:hover .ev3-card-img {
+        transform: scale(1.04);
+      }
+
+      /* Badge (top-right) */
+      .ev3-badge {
+        position: absolute;
+        top: 14px;
+        right: 14px;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: #fff;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        padding: 5px 14px;
+        border-radius: 50px;
+        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.5);
+        backdrop-filter: blur(4px);
+      }
+
+      /* ── Card body ── */
+      .ev3-card-body {
+        padding: 20px 24px 26px;
+        background: #fff;
+      }
+      .ev3-card-meta {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+      /* Season tag — Rotary blue pill */
+      .ev3-season {
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding: 4px 12px;
+        border-radius: 50px;
+        background: #003f8a;
+        color: #fff;
+        border: none;
+      }
+      /* Date text */
+      .ev3-date {
+        font-size: 0.75rem;
+        color: #888;
+        font-weight: 400;
+      }
+      /* Event title — deep Rotary blue */
+      .ev3-card-title {
+        font-family: "Outfit", sans-serif;
+        font-size: clamp(1.1rem, 2.5vw, 1.45rem);
+        font-weight: 700;
+        color: #003f8a;
+        letter-spacing: -0.02em;
+        line-height: 1.25;
+        margin-bottom: 8px;
+      }
+      /* Description — charcoal */
+      .ev3-card-desc {
+        font-size: 0.82rem;
+        color: #555;
+        line-height: 1.65;
+      }
+
+      /* ── Dot indicators ── */
+      .ev3-dots {
+        position: relative;
+        z-index: 10;
+        display: flex;
+        gap: 7px;
+        margin-top: 28px;
+        flex-wrap: wrap;
+        justify-content: center;
+        max-width: 340px;
+      }
+      .ev3-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        border: none;
+        cursor: pointer;
+        transition:
+          background 0.3s,
+          transform 0.3s,
+          width 0.3s;
+        padding: 0;
+        outline: none;
+      }
+      .ev3-dot.active {
+        background: #fff;
+        width: 22px;
+        border-radius: 3px;
+        transform: scaleY(1.1);
+      }
+
+      /* ── Responsive ── */
+      @media (max-width: 640px) {
+        .ev3-stage {
+          gap: 12px;
+        }
+        .ev3-nav {
+          width: 40px;
+          height: 40px;
+        }
+        .ev3-card-body {
+          padding: 14px 16px 18px;
+        }
+        .ev3-play svg {
+          width: 40px;
+          height: 40px;
+        }
+      }
+    </style>
+
+    <!-- ── EVENTS PAGE 3 : JS ── -->
+    <script>
+      (function () {
+        /* ─── Slide data ─── */
+        var slides = [
+          {
+            img: "images/updateimgs/WhatsApp Image 2026-05-01 at 9.46.37 PM.jpeg",
+            title: "District Governor's Visit",
+            desc: "An official visit by the District Governor to review our flagship healthcare outreach programmes.",
+            season: "Healthcare",
+            date: "Rotary Club · Udumalpet Galaxy",
+          },
+          {
+            img: "images/updateimgs/WhatsApp Image 2026-05-01 at 9.46.38 PM (1).jpeg",
+            title: "Community Health Camp",
+            desc: "A large-scale free health camp bringing medical diagnostics to underserved communities.",
+            season: "Camp",
+            date: "Rotary Club · Udumalpet Galaxy",
+          },
+          {
+            img: "images/updateimgs/WhatsApp Image 2026-05-01 at 9.46.38 PM (2).jpeg",
+            title: "Free Diagnostic Drive",
+            desc: "Providing free ultrasound and diagnostic services to rural families across Tamil Nadu.",
+            season: "Diagnostics",
+            date: "Rotary Club · Udumalpet Galaxy",
+          },
+          {
+            img: "images/updateimgs/WhatsApp Image 2026-05-01 at 9.46.38 PM.jpeg",
+            title: "Medical Outreach Programme",
+            desc: "Partnering with doctors and volunteers to reach the remotest corners of our district.",
+            season: "Outreach",
+            date: "Rotary Club · Udumalpet Galaxy",
+          },
+          {
+            img: "images/updateimgs/WhatsApp Image 2026-05-01 at 9.46.39 PM (1).jpeg",
+            title: "Awareness & Education Camp",
+            desc: "Educating families on preventive healthcare and the importance of early diagnosis.",
+            season: "Education",
+            date: "Rotary Club · Udumalpet Galaxy",
+          },
+          {
+            img: "images/updateimgs/WhatsApp Image 2026-05-01 at 9.46.39 PM.jpeg",
+            title: "Rotary Annual Gathering",
+            desc: "The annual assembly of Rotary Club of Udumalpet Galaxy celebrating service and impact.",
+            season: "Annual",
+            date: "Rotary Club · Udumalpet Galaxy",
+          },
+          {
+            img: "images/updateimgs/WhatsApp Image 2026-05-01 at 9.46.40 PM (1).jpeg",
+            title: "Rural Wellness Initiative",
+            desc: "Dedicated wellness drives targeting nutritional and maternal health in rural zones.",
+            season: "Wellness",
+            date: "Rotary Club · Udumalpet Galaxy",
+          },
+          {
+            img: "images/updateimgs/WhatsApp Image 2026-05-01 at 9.46.41 PM (1).jpeg",
+            title: "Diagnostic Outreach Camp",
+            desc: "Mobile diagnostic units providing scans and lab services to remote villages.",
+            season: "Diagnostics",
+            date: "Rotary Club · Udumalpet Galaxy",
+          },
+          {
+            img: "images/updateimgs/WhatsApp Image 2026-05-01 at 9.46.41 PM (2).jpeg",
+            title: "Community Welfare Meet",
+            desc: "Bringing together community leaders, doctors, and volunteers for collaborative impact.",
+            season: "Welfare",
+            date: "Rotary Club · Udumalpet Galaxy",
+          },
+          {
+            img: "images/updateimgs/WhatsApp Image 2026-05-01 at 9.46.41 PM.jpeg",
+            title: "Village Healthcare Programme",
+            desc: "Door-to-door health screening and consultation services for village households.",
+            season: "Healthcare",
+            date: "Rotary Club · Udumalpet Galaxy",
+          },
+          {
+            img: "images/updateimgs/WhatsApp Image 2026-05-01 at 9.46.42 PM (1).jpeg",
+            title: "Free Consultation Camp",
+            desc: "Expert doctors providing free consultation and prescription support at zero cost.",
+            season: "Camp",
+            date: "Rotary Club · Udumalpet Galaxy",
+          },
+          {
+            img: "images/updateimgs/WhatsApp Image 2026-05-01 at 9.46.42 PM.jpeg",
+            title: "Rotary Service Day",
+            desc: "Members unite on Service Day to clean, serve, and uplift the community together.",
+            season: "Service",
+            date: "Rotary Club · Udumalpet Galaxy",
+          },
+          {
+            img: "images/updateimgs/WhatsApp Image 2026-05-01 at 9.46.43 PM.jpeg",
+            title: "Annual Foundation Event",
+            desc: "Celebrating another year of impact: milestones, awards, and community recognition.",
+            season: "Foundation",
+            date: "Rotary Club · Udumalpet Galaxy",
+          },
+        ];
+
+        var current = 0;
+        var isAnim = false;
+        var autoTimer;
+        var DELAY = 4500; /* autoplay interval (ms) */
+
+        /* DOM refs */
+        var bgA = document.getElementById("ev3BgA");
+        var bgB = document.getElementById("ev3BgB");
+        var cardWrap = document.getElementById("ev3CardWrap");
+        var cardImg = document.getElementById("ev3CardImg");
+        var cardTitle = document.getElementById("ev3Title");
+        var cardDesc = document.getElementById("ev3Desc");
+        var cardSeason = document.getElementById("ev3Season");
+        var cardDate = document.getElementById("ev3Date");
+        var badge = document.getElementById("ev3Badge");
+        var dotsEl = document.getElementById("ev3Dots");
+        var prevBtn = document.getElementById("ev3Prev");
+        var nextBtn = document.getElementById("ev3Next");
+
+        /* ── Build dot indicators ── */
+        slides.forEach(function (_, i) {
+          var d = document.createElement("button");
+          d.className = "ev3-dot" + (i === 0 ? " active" : "");
+          d.setAttribute("aria-label", "Go to slide " + (i + 1));
+          d.addEventListener("click", function () {
+            goTo(i, i > current ? "next" : "prev");
+          });
+          dotsEl.appendChild(d);
+        });
+
+        function getDots() {
+          return Array.from(dotsEl.querySelectorAll(".ev3-dot"));
+        }
+
+        /* ── Initial render (no animation) ── */
+        function initSlide() {
+          var s = slides[current];
+          bgA.style.backgroundImage = 'url("' + s.img + '")';
+          cardImg.src = s.img;
+          cardImg.alt = s.title;
+          cardTitle.textContent = s.title;
+          cardDesc.textContent = s.desc;
+          cardSeason.textContent = s.season;
+          cardDate.textContent = s.date;
+          badge.textContent = pad(current + 1) + " / " + pad(slides.length);
+        }
+        function pad(n) {
+          return n < 10 ? "0" + n : "" + n;
+        }
+
+        /* ── Slide backgrounds: outgoing → left, incoming ← right ── */
+        var activeBg = "A";
+        function slideBg(newImg, dir) {
+          var incoming = activeBg === "A" ? bgB : bgA;
+          var outgoing = activeBg === "A" ? bgA : bgB;
+          var inStart = dir === "prev" ? "-100%" : "100%";
+          var outEnd = dir === "prev" ? "100%" : "-100%";
+
+          /* Snap incoming to start off-screen */
+          incoming.style.transition = "none";
+          incoming.style.transform = "translateX(" + inStart + ")";
+          incoming.style.backgroundImage = 'url("' + newImg + '")';
+          incoming.style.zIndex = "1";
+          outgoing.style.zIndex = "0";
+
+          /* Force reflow */
+          incoming.getBoundingClientRect();
+
+          /* Slide both layers together */
+          incoming.style.transition =
+            "transform 0.75s cubic-bezier(0.77, 0, 0.175, 1)";
+          outgoing.style.transition =
+            "transform 0.75s cubic-bezier(0.77, 0, 0.175, 1)";
+          incoming.style.transform = "translateX(0)";
+          outgoing.style.transform = "translateX(" + outEnd + ")";
+
+          activeBg = activeBg === "A" ? "B" : "A";
+        }
+
+        /* ── Update dots ── */
+        function updateDots() {
+          getDots().forEach(function (d, i) {
+            d.classList.toggle("active", i === current);
+          });
+        }
+
+        /* ── Main transition ── */
+        function goTo(idx, dir) {
+          if (isAnim || idx === current) return;
+          isAnim = true;
+
+          var reverseClass = dir === "prev" ? " reverse" : "";
+          var s = slides[idx];
+
+          /* 1. Flip-out card + slide background — same frame */
+          cardWrap.className = "ev3-card-wrap flipping-out" + reverseClass;
+          slideBg(s.img, dir);
+          updateDots();
+
+          /* ── 380ms: card is edge-on (invisible) → swap content silently ── */
+          setTimeout(function () {
+            current = idx;
+
+            cardImg.src = s.img;
+            cardImg.alt = s.title;
+            cardTitle.textContent = s.title;
+            cardDesc.textContent = s.desc;
+            cardSeason.textContent = s.season;
+            cardDate.textContent = s.date;
+            badge.textContent = pad(current + 1) + " / " + pad(slides.length);
+
+            /* 3. Flip-in new card */
+            cardWrap.className = "ev3-card-wrap flipping-in" + reverseClass;
+
+            setTimeout(function () {
+              cardWrap.className = "ev3-card-wrap";
+              isAnim = false;
+            }, 450);
+          }, 380); /* matches flip-out duration */
+        }
+
+        /* ── Next / Prev helpers ── */
+        function goNext() {
+          var next = (current + 1) % slides.length;
+          goTo(next, "next");
+        }
+        function goPrev() {
+          var prev = (current - 1 + slides.length) % slides.length;
+          goTo(prev, "prev");
+        }
+
+        /* ── Button listeners ── */
+        nextBtn.addEventListener("click", function () {
+          resetAutoplay();
+          goNext();
+        });
+        prevBtn.addEventListener("click", function () {
+          resetAutoplay();
+          goPrev();
+        });
+
+        /* ── Keyboard ── */
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "ArrowRight") {
+            resetAutoplay();
+            goNext();
+          }
+          if (e.key === "ArrowLeft") {
+            resetAutoplay();
+            goPrev();
+          }
+        });
+
+        /* ── Autoplay ── */
+        function startAutoplay() {
+          autoTimer = setInterval(goNext, DELAY);
+        }
+        function stopAutoplay() {
+          clearInterval(autoTimer);
+        }
+        function resetAutoplay() {
+          stopAutoplay();
+          startAutoplay();
+        }
+
+        /* Pause on hover */
+        var section = document.getElementById("events3");
+        section.addEventListener("mouseenter", stopAutoplay);
+        section.addEventListener("mouseleave", startAutoplay);
+
+        /* ── Touch / swipe support ── */
+        var touchStartX = 0;
+        section.addEventListener(
+          "touchstart",
+          function (e) {
+            touchStartX = e.changedTouches[0].clientX;
+          },
+          { passive: true },
+        );
+        section.addEventListener(
+          "touchend",
+          function (e) {
+            var dx = e.changedTouches[0].clientX - touchStartX;
+            if (Math.abs(dx) > 50) {
+              resetAutoplay();
+              if (dx < 0) goNext();
+              else goPrev();
+            }
+          },
+          { passive: true },
+        );
+
+        /* ── Subtle parallax on mouse move ── */
+        section.addEventListener("mousemove", function (e) {
+          var rx = (e.clientX / window.innerWidth - 0.5) * 10;
+          var ry = (e.clientY / window.innerHeight - 0.5) * 6;
+          bgA.style.transform =
+            "scale(1.1) translate(" + rx + "px," + ry + "px)";
+          bgB.style.transform =
+            "scale(1.1) translate(" + rx + "px," + ry + "px)";
+        });
+        section.addEventListener("mouseleave", function () {
+          bgA.style.transform = "";
+          bgB.style.transform = "";
+        });
+
+        /* ── Init ── */
+        initSlide();
+        startAutoplay();
+      })();
+    </script>
+
     <!-- 8. BLOG SECTION -->
     <section id="blog" class="blog bg-light section-padding">
       <div class="container">
@@ -729,13 +1957,25 @@
             </ul>
           </div>
           <div class="footer-logo-container">
-            <img src="images/logo-new.png" alt="Rotary Logo" class="footer-logo" onerror="this.src='images/image copy.png'" />
+            <img
+              src="images/logo-new.png"
+              alt="Rotary Logo"
+              class="footer-logo"
+              onerror="this.src = 'images/image copy.png'"
+            />
           </div>
         </div>
         <div class="footer-bottom">
           <p>
             &copy; 2026 Rotary Club of Udumalpet Galaxy. All rights reserved.
-            Developed By <a href="https://webxtechnosoft.com/" target="_blank" rel="noopener noreferrer" style="color: #fff; text-decoration: underline; font-weight: 600;">webxtechnosoft</a>
+            Developed By
+            <a
+              href="https://webxtechnosoft.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style="color: #fff; text-decoration: underline; font-weight: 600"
+              >webxtechnosoft</a
+            >
           </p>
         </div>
       </div>
